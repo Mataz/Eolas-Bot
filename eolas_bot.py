@@ -4,7 +4,7 @@ import random
 import aiohttp
 from bs4 import BeautifulSoup
 
-eolas = discord.Client()
+client = discord.Client()
 eolas = commands.Bot(command_prefix="?")
 
 
@@ -60,4 +60,4 @@ async def on_message(message):
         await eolas.send_message(message.channel, "Salut !")
 
 
-eolas.run('token')
+client.run('token')
