@@ -4,6 +4,7 @@ import random
 import aiohttp
 from bs4 import BeautifulSoup
 
+eolas = discord.Client()
 eolas = commands.Bot(command_prefix="?")
 
 
