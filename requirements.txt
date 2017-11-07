@@ -1,4 +1,5 @@
 discord.py[voice]
 websockets
 aiohttp
-pyowm
+BeautifulSoup
+random
