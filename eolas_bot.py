@@ -1,12 +1,32 @@
 import discord
-import asyncio
-from discord.ext import commands
 import random
 import aiohttp
 from bs4 import BeautifulSoup
+from discord.ext import commands
 
-eolas = discord.Client()
-eolas = commands.Bot(command_prefix="?")
+client = discord.Client()
+
+description = '''There are a number of utility commands being showcased here.'''
+eolas = commands.Bot(command_prefix='?', description=description)
+
+hello_list = ['Yo', 'yo', 'Hey', 'hey', 'Salut', 'salut', 'Bonjour', 'bonjour']
+foot_list = ['Neymar', 'neymar','Cavani', 'cavani', 'PSG', 'psg', 'foot',
+             'football', 'Zidane', 'zidane', 'Real', 'real', 'Madrid', 'madrid'
+             'Barca', 'barca', 'OM', 'Deschamps', 'deschamps', 'Blaise']
+
+# choices = (
+#     'https://media.giphy.com/media/hBO3iUfEtI2s0/giphy.gif'
+#     'https://media.giphy.com/media/TEBouaNRv736E/giphy.gif'
+#     'https://media.giphy.com/media/lXB3CaZsXkyf6/giphy.gif'
+#     'https://media.giphy.com/media/i1JSXl0MfeRd6/giphy.gif'
+# )
+
+
+@eolas.event
+async def on_member_join(member):
+    server = member.server
+    fmt = 'Bienvenue {0.mention} chez {1.name} !'
+    await eolas.send_message(server, fmt.format(member, server))
 
 
 @eolas.event
@@ -17,31 +37,66 @@ async def on_ready():
     print('------')
 
 
-@eolas.command()
-async def coinflip(ctx):
-    """
-    ?coinflip - Flip a coin and choose "Pile" or "Face".
-    """
-    choices = ('Pile !', 'Face !')
-    await ctx.send(random.choice(choices))
+@eolas.event
+async def on_message(message):
+    if message.content in hello_list:
+        await eolas.send_message(message.channel, "Salut !")
+    if any(i in message.content for i in foot_list):
+        await eolas.send_message(message.channel, 'https://media.giphy.com/media/hBO3iUfEtI2s0/giphy.gif')
+        await eolas.send_message(message.channel, "Non, pas de ça ici, s'il-vous-plaît.")
+    await eolas.process_commands(message)
 
 
 @eolas.command()
-async def add(left : int, right : int):
-    """
-    Adds two number together.
-    """
+async def add(left: int, right: int):
+    """Adds two numbers together."""
     await eolas.say(left + right)
+
+
+@eolas.command()
+async def roll(dice: str):
+    """Rolls a dice in NdN format."""
+    try:
+        rolls, limit = map(int, dice.split('d'))
+    except Exception:
+        await eolas.say('Format has to be in NdN!')
+        return
+
+    result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
+    await eolas.say(result)
+
+
+@eolas.command(description='For when you wanna settle the score some other way')
+async def choose(*choices: str):
+    """Chooses between multiple choices."""
+    await eolas.say(random.choice(choices))
+
+
+@eolas.command()
+async def repeat(times : int, content='repeating...'):
+    """Repeats a message multiple times."""
+    for i in range(times):
+        await eolas.say(content)
 
 
 @eolas.command()
 async def joined(member : discord.Member):
     """Says when a member joined."""
-    await bot.say('{0.name} joined in {0.joined_at}'.format(member))
+    await eolas.say('{0.name} joined in {0.joined_at}'.format(member))
 
 
+@eolas.group(pass_context=True)
+async def cool(ctx):
+    """Says if a user is cool.
+    In reality this just checks if a subcommand is being invoked.
+    """
+    if ctx.invoked_subcommand is None:
+        await eolas.say('No, {0.subcommand_passed} is not cool'.format(ctx))
+
+
+# TODO : facts doesn't work, get on it
 @eolas.command()
-async def facts(ctx):
+async def facts():
     """
     ?facts - A command that will provide a random fact.
     """
@@ -52,13 +107,7 @@ async def facts(ctx):
 
             for fact in facts:
                 fact = fact.strip()
-                await ctx.send(fact)
+                await eolas.send(fact)
 
 
-@eolas.event
-async def on_message(message):
-    if message.content == "Yo":
-        await eolas.send_message(message.channel, "Salut !")
-
-
-eolas.run('token')
+eolas.run('BOT_TOKEN')
