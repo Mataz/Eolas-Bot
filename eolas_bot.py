@@ -1,7 +1,7 @@
 import discord
 import random
 import aiohttp
-from bs4 import BeautifulSoup
+import bs4
 from discord.ext import commands
 
 client = discord.Client()
@@ -36,7 +36,7 @@ async def on_ready():
     print(eolas.user.id)
     print('------')
 
-
+# TODO : Randomize multiple gifs for the replies triggered by foot_list
 @eolas.event
 async def on_message(message):
     if message.content in hello_list:
