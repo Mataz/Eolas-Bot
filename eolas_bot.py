@@ -74,6 +74,17 @@ async def news():
             pass
 
 
+# ?facts - Scrape unkno.com and return the fact from it.
+@eolas.command()
+async def facts():
+    source = requests.get('http://unkno.com/').text
+    soup = bs4.BeautifulSoup(source, 'lxml')
+    # facts = soup.find('section', class_='body')
+    fact = soup.find('div', id='content')
+    print(fact.text)
+    await eolas.say('Here is your fact: ' + '\n' + fact.text)        
+
+    
 @eolas.command()
 async def add(left: int, right: int):
     """Adds two numbers together."""
@@ -120,21 +131,6 @@ async def cool(ctx):
     if ctx.invoked_subcommand is None:
         await eolas.say('No, {0.subcommand_passed} is not cool'.format(ctx))
 
-
-# TODO : facts doesn't work, get on it
-# @eolas.command()
-# async def facts():
-#     """
-#     ?facts - A command that will provide a random fact.
-#     """
-#     async with aiohttp.ClientSession() as session:
-#         async with session.get('http://www.lemonde.fr/') as response:
-#             soup = BeautifulSoup(await response.text(), 'lxml')
-#             news = soup.select('div[class="titres clearfix"]')
-#
-#             for i in news:
-#                 i = news.strip()
-#                 await eolas.send(i)
 
 
 eolas.run('BOT_TOKEN')
