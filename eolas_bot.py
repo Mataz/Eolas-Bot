@@ -137,4 +137,4 @@ async def cool(ctx):
 #                 await eolas.send(i)
 
 
-eolas.run('Mzc2MDc1MDU3MjA3NzA1NjAw.DOIGfA.bYRke2_k2eMz7p9UU_kOsN9Ea7Y')
+eolas.run('BOT_TOKEN')
