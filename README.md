@@ -9,7 +9,7 @@ ___
  * ?roll - Rolls a die in NdN format.
  * ?choose - For when you want to randomly choose something.
  * ?repeat - Repeats a message multiple times.
- * ?joined <member> - Returns when a member joined the server.
+ * ?joined < member > - Returns when a member joined the server.
  * ?cool - Returns if a user is cool. In reality this just checks if a subcommand is being invoked.
  * ?news - Scrape a specific block on lemonde.fr and return the news from it.
  
