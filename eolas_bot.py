@@ -3,6 +3,8 @@ import random
 import aiohttp
 import bs4
 import requests
+import csv
+import os.path
 from discord.ext import commands
 
 client = discord.Client()
@@ -72,6 +74,22 @@ async def news():
             await eolas.say(hours + "\n" + lm_link)
         else:
             pass
+        
+        filename = 'PATH_.CSV'
+        fileEmpty = os.stat(filename).st_size == 0
+
+        # Append data to a .CSV file
+        with open(filename, 'a') as csv_file:
+            headers = ['Hours', 'Titles', 'Links']
+
+            csv_writer = csv.DictWriter(csv_file, fieldnames=headers,
+                                        delimiter='\t')
+            if fileEmpty:
+                csv_writer.writeheader()  # file doesn't exist, write header
+            csv_writer.writerow(
+                {'Hours': hours, 'Titles': titles, 'Links': lm_link})
+
+        csv_file.close()  
 
 
 # ?facts - Scrape unkno.com and return the fact from it.
