@@ -63,6 +63,13 @@ async def news():
         print(hours)
 
         try:
+            titles = news_lm.find('a').text
+        except Exception as e:
+            titles = None
+
+        print(titles)
+
+        try:
             links = news_lm.find('a')['href']
             lm_link = f'https://www.lemonde.fr/{links}'
         except Exception as e:
@@ -70,15 +77,15 @@ async def news():
 
         print(lm_link)
         print()
+
         if lm_link is not None:
             await eolas.say(hours + "\n" + lm_link)
         else:
             pass
-        
-        filename = 'PATH_.CSV'
+
+        filename = 'PATH.csv'
         fileEmpty = os.stat(filename).st_size == 0
 
-        # Append data to a .CSV file
         with open(filename, 'a') as csv_file:
             headers = ['Hours', 'Titles', 'Links']
 
