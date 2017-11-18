@@ -7,8 +7,8 @@ ___
 |Command|Description|Usage|
 |---|---|---|
 | `add` | Adds two numbers together | `?add <123 1548>` |
-| `roll` | Rolls a die in NdN format | `?roll <2d6>' |
-| `choose` | For when you want to randomly choose something | `?choose <A B C>' |
+| `roll` | Rolls a die in NdN format | `?roll <2d6>` |
+| `choose` | For when you want to randomly choose something | `?choose <A B C>` |
 | `repeat` | Repeats a message multiple times | `?repeat <5 oh>` |
 | `joined` | Returns when a member joined the server. | `?joined <member>` |
 | `cool` | Returns if a user is cool. In reality this just checks if a subcommand is being invoked. | `?cool <member>` |
