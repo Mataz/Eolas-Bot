@@ -14,6 +14,7 @@ ___
 | `cool` | Returns if a user is cool. In reality this just checks if a subcommand is being invoked. | `?cool <member>` |
 | `news` | Scrape a specific block on lemonde.fr then return the news from it and append the data to a .CSV | `?news` |
 | `facts` | Scrape unkno.com and return the fact from it. | `?facts` |
+| `chess` | Print a link of a randomly selected puzzle from Lichess.org | `?chess` |
 
  ### Events
  
