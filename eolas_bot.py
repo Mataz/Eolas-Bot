@@ -157,5 +157,14 @@ async def cool(ctx):
         await eolas.say('No, {0.subcommand_passed} is not cool'.format(ctx))
 
 
+# ?chess - Print a link of a randomly selected puzzle from Lichess.org
+@eolas.command()
+async def chess():
+    random_number = random.sample(range(1, 125000), 1)
+    random_ID = ("".join(map(str, random_number)))
+    puzzle_link = f'https://lichess.org/training/{("".join(map(str, random_number)))}'
+    print('Lichess Puzzle ID:' + '\n' + random_ID)
+    await eolas.say('Lichess Puzzle:' + '\n' + puzzle_link)
+
 
 eolas.run('BOT_TOKEN')
