@@ -5,6 +5,7 @@ import bs4
 import requests
 import csv
 import os.path
+import pyowm
 from discord.ext import commands
 
 client = discord.Client()
@@ -167,4 +168,21 @@ async def chess():
     await eolas.say('Lichess Puzzle:' + '\n' + puzzle_link)
 
 
+# ?meteo <location> - Print the forecast of a specific location.
+@eolas.command()
+async def meteo(*, name):
+    owm = pyowm.OWM('OWM_API_KEY', language='fr')
+
+    observation = owm.weather_at_place(name)
+    weather = observation.get_weather()
+    location = observation.get_location()
+    get_temperature = weather.get_temperature(unit='celsius')
+    get_wind = weather.get_wind()
+
+    await eolas.say('Lieu: {}'.format(location.get_name()))
+    await eolas.say('Température: {}'.format(get_temperature['temp']) + u'\N{DEGREE SIGN}C')
+    await eolas.say('Vitesse du vent: {}'.format(get_wind['speed']) + ' m/s')
+    await eolas.say('Description: {}'.format(weather.get_detailed_status()))
+
+    
 eolas.run('BOT_TOKEN')
