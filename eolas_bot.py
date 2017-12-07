@@ -184,5 +184,20 @@ async def meteo(*, name):
     await eolas.say('Vitesse du vent: {}'.format(get_wind['speed']) + ' m/s')
     await eolas.say('Description: {}'.format(weather.get_detailed_status()))
 
+
+# ?cavani - Print a random gif of Cavani.
+@eolas.command()
+async def cavani():
+    cavani_gifs = [
+        "https://media.giphy.com/media/3oKGzl8zDsyKif2xdS/giphy.gif",
+        "https://media.giphy.com/media/3oKGzi31QTqbppVOjS/giphy.gif",
+        "https://media.giphy.com/media/l4FsydT8HX6EWau9a/giphy.gif",
+        "https://media.giphy.com/media/AAvqQob2BUFCo/giphy.gif",
+        "https://media.giphy.com/media/l1J3Qcd7OmaqfnXQ4/giphy.gif"]
+
+    rand_gif = random.choice(cavani_gifs)
+
+    await eolas.say(rand_gif)
+    
     
 eolas.run('BOT_TOKEN')
