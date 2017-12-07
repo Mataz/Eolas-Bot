@@ -16,6 +16,7 @@ ___
 | `facts` | Scrape unkno.com and return the fact from it. | `?facts` |
 | `chess` | Print a link of a randomly selected puzzle from Lichess.org. | `?chess` |
 | `meteo` | Print the forecast of a specific location. | `?meteo <location>` |
+| `cavani` | Print a random gif of football player Edinson Cavani. | `?cavani` |
 
  ### Events
  
