@@ -8,7 +8,6 @@ import os.path
 import pyowm
 from discord.ext import commands
 
-client = discord.Client()
 
 description = '''There are a number of utility commands being showcased here.'''
 eolas = commands.Bot(command_prefix='?', description=description)
@@ -18,13 +17,6 @@ foot_list = ['Neymar', 'neymar','Cavani', 'cavani', 'PSG', 'psg',
              'Zidane', 'zidane', 'Real', 'real', 'Madrid', 'madrid'
              'Barca', 'barca', 'OM', 'Deschamps', 'deschamps', 'Blaise',
              'blaise']
-
-# choices = (
-#     'https://media.giphy.com/media/hBO3iUfEtI2s0/giphy.gif'
-#     'https://media.giphy.com/media/TEBouaNRv736E/giphy.gif'
-#     'https://media.giphy.com/media/lXB3CaZsXkyf6/giphy.gif'
-#     'https://media.giphy.com/media/i1JSXl0MfeRd6/giphy.gif'
-# )
 
 
 @eolas.event
