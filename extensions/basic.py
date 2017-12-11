@@ -32,7 +32,8 @@ class Basic:
                 await eolas.send_message(message.channel,
                                          "Non, pas de ça ici, s'il-vous-plaît.")
             await eolas.process_commands(message)
-
+        
+        # ?facts - Scrape unkno.com and return the fact from it.
         @eolas.command()
         async def facts():
             source = requests.get('http://unkno.com/').text
