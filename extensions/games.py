@@ -12,6 +12,7 @@ class Games:
         # ?chess - Print a link of a randomly selected puzzle from Lichess.org
         @eolas.command()
         async def chess():
+            """Print a link of a randomly selected puzzle from Lichess.org"""
             random_number = random.sample(range(1, 125000), 1)
             random_ID = ("".join(map(str, random_number)))
             puzzle_link = f'https://lichess.org/training/{("".join(map(str, random_number)))}'
@@ -21,6 +22,7 @@ class Games:
         # ?gwent - Print the top 5 decks of the week on gwentdb.com
         @eolas.command()
         async def gwent():
+            """Print the top 5 decks of the week on gwentdb.com"""
             source = requests.get(
                 'http://www.gwentdb.com/decks?filter-deck-time-frame=3').text
             soup = bs4.BeautifulSoup(source, 'lxml')
