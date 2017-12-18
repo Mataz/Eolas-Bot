@@ -48,13 +48,13 @@ class Games:
                 if titles is not None:
                     await eolas.say(titles + '\n' * 2
                                     + '<:gwent_card:392317309026304001> '
-                                    + cards + '\n'
+                                    + cards + ' | '
                                     + '<:gwent_melee:392316109547765763> '
                                     + melee + ' | '
                                     + '<:gwent_ranged:392316253135699970> '
                                     + ranged + ' | '
                                     + '<:gwent_siege:392316109916864512> '
-                                    + siege + '\n'
+                                    + siege + '\n' * 2
                                     + 'Rating: ' + rating + ' | ' + 'Updated: '
                                     + updated + ' |' + '\n'
                                     + '--------------------'
