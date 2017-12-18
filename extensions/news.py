@@ -13,6 +13,7 @@ class News:
         # ?news - Scrape a specific block on lemonde.fr and return the news from it
         @eolas.command()
         async def news():
+            """Scrape a specific block on lemonde.fr and return the news from it."""
             source = requests.get('http://www.lemonde.fr/').text
             soup = bs4.BeautifulSoup(source, 'lxml')
             bloc = soup.find('ul', class_='liste_horaire')
