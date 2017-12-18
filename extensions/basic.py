@@ -36,6 +36,7 @@ class Basic:
         # ?facts - Scrape unkno.com and return the fact from it.
         @eolas.command()
         async def facts():
+            """Scrape unkno.com and return the fact from it."""
             source = requests.get('http://unkno.com/').text
             soup = bs4.BeautifulSoup(source, 'lxml')
             # facts = soup.find('section', class_='body')
