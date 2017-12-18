@@ -10,6 +10,7 @@ class Football:
         # ?cavani - Print a random gif of Cavani.
         @eolas.command()
         async def cavani():
+            """Print a random gif of Cavani."""
             cavani_gifs = [
                 "https://media.giphy.com/media/3oKGzl8zDsyKif2xdS/giphy.gif",
                 "https://media.giphy.com/media/3oKGzi31QTqbppVOjS/giphy.gif",
