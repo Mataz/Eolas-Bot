@@ -17,6 +17,7 @@ ___
 | `chess` | Print a link of a randomly selected puzzle from Lichess.org. | `?chess` |
 | `meteo` | Print the forecast of a specific location. | `?meteo <location>` |
 | `cavani` | Print a random gif of football player Edinson Cavani. | `?cavani` |
+| `gwent` | Print the top 5 decks of the week on gwentdb.com | `?gwent` |
 
  ### Events
  
