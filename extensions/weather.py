@@ -12,6 +12,7 @@ class Weather:
         # ?meteo <location> - Print the forecast of a specific location.
         @eolas.command()
         async def meteo(*, name):
+            """<location> - Print the forecast of a specific location."""
             owm = pyowm.OWM(owm_key, language='fr')
 
             observation = owm.weather_at_place(name)
