@@ -45,6 +45,9 @@ class Games:
                                         class_='rating-sum rating-average rating-average-ratingPositive').text
                 updated = hot_decks.find('td', class_='col-updated').text
                 print('Rating: ' + rating + ' | ' + 'Updated: ' + updated)
+
+                total = hot_decks.find('span', class_='power-total').text
+                
                 if titles is not None:
                     await eolas.say(titles + '\n' * 2
                                     + '<:gwent_card:392317309026304001> '
@@ -54,7 +57,9 @@ class Games:
                                     + '<:gwent_ranged:392316253135699970> '
                                     + ranged + ' | '
                                     + '<:gwent_siege:392316109916864512> '
-                                    + siege + '\n' * 2
+                                    + siege
+                                    + ' | ' + '<:sigma:392352438302015488>'
+                                    + total + '\n' * 2
                                     + 'Rating: ' + rating + ' | ' + 'Updated: '
                                     + updated + ' |' + '\n'
                                     + '--------------------'
