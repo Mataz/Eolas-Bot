@@ -31,19 +31,38 @@ class Games:
                 titles = hot_decks.a.text
                 print(titles)
 
-                try:
-                    links = hot_decks.find('a')['href']
-                    gw_link = f'http://www.gwentdb.com/{links}'
-                except Exception as e:
-                    gw_link = None
-                
-                print(gw_link)
-                print()
+                cards = hot_decks.find('td', class_='col-card-count').text
+                print('Cards: ' + cards)
 
-                if gw_link is not None:
-                    await eolas.say(titles + "\n\n" + gw_link)
+                melee = hot_decks.find('span', class_='melee').text
+                ranged = hot_decks.find('span', class_='ranged').text
+                siege = hot_decks.find('span', class_='siege').text
+                print(
+                    'Attack: ' + melee + ' | ' + 'Ranged: ' + ranged + ' | '
+                    + 'Siege: ' + siege)
+
+                rating = hot_decks.find('div',
+                                        class_='rating-sum rating-average rating-average-ratingPositive').text
+                updated = hot_decks.find('td', class_='col-updated').text
+                print('Rating: ' + rating + ' | ' + 'Updated: ' + updated)
+                if titles is not None:
+                    await eolas.say(titles + '\n' * 2
+                                    + '<:gwent_card:392317309026304001> '
+                                    + cards + '\n'
+                                    + '<:gwent_melee:392316109547765763> '
+                                    + melee + ' | '
+                                    + '<:gwent_ranged:392316253135699970> '
+                                    + ranged + ' | '
+                                    + '<:gwent_siege:392316109916864512> '
+                                    + siege + '\n'
+                                    + 'Rating: ' + rating + ' | ' + 'Updated: '
+                                    + updated + ' |' + '\n'
+                                    + '--------------------'
+                                      '--------------------'
+                                      '--------')
                 else:
                     pass
+            await eolas.say('http://www.gwentdb.com/decks?filter-deck-time-frame=3')
 
 
 def setup(eolas):
