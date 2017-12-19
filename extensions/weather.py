@@ -21,13 +21,15 @@ class Weather:
             get_temperature = weather.get_temperature(unit='celsius')
             get_wind = weather.get_wind()
 
-            await eolas.say('Lieu: {}'.format(location.get_name()))
-            await eolas.say('Température: {}'.format(
-                get_temperature['temp']) + u'\N{DEGREE SIGN}C')
-            await eolas.say(
-                'Vitesse du vent: {}'.format(get_wind['speed']) + ' m/s')
-            await eolas.say(
-                'Description: {}'.format(weather.get_detailed_status()))
+            await eolas.say('Lieu: {}'.format(location.get_name())
+                            + '\n'
+                            + ('Température: {}'.format(get_temperature['temp'])
+                               + u'\N{DEGREE SIGN}C')
+                            + '\n'
+                            + ('Vitesse du vent: {}'.format(get_wind['speed']) + ' m/s')
+                            + '\n'
+                            + ('Description: {}'.format(weather.get_detailed_status()))
+                            )
 
 
 def setup(eolas):
