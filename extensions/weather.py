@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands as eolas
 from functools import partial
 
-owm_key = ('YOU_OWM_API_KEY')
+owm_key = ('YOUR_OWM_API_KEY')
 
 class Weather:
     def __init__(self, eolas):
