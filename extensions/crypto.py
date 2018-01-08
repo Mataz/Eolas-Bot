@@ -21,11 +21,12 @@ class Crypto:
                     market_cap_usd[i:i + 3] for i in range(0, len(market_cap_usd), 3))
                 change_24h = currency['percent_change_24h']
                 print(
-                    rank + ' | ' + name + ' | ' + '$' + price_usd + ' | ' + '$'
+                    rank + ' | ' + name.upper() + ' | ' + '$' + price_usd + ' | ' + '$'
                     + market_cap_usd + ' | ' + change_24h + '%')
                 print()
-                await eolas.say(rank + ' | ' + name + ' | ' + '$' + price_usd + ' | '
-                                + '$' + market_cap_usd + ' | ' + change_24h + '%')
+                await eolas.say(rank + ' | ' + name.upper() + ' | ' + '$' + price_usd
+                                + ' | ' + '$' + market_cap_usd + ' | ' + change_24h + '%'
+                                + '\n' + '_ _') # '_ _' is to create a clean line break on Discord
 
 
 def setup(eolas):
