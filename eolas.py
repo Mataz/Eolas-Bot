@@ -12,6 +12,7 @@ extensions = (
     'extensions.football',
     'extensions.games',
     'extensions.news',
+    'extensions.crypto',
 )
 
 
