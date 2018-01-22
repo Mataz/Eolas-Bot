@@ -19,6 +19,7 @@ ___
 | `cavani` | Print a random gif of football player Edinson Cavani. | `?cavani` |
 | `gwent` | Print the top 5 decks of the week on gwentdb.com | `?gwent` |
 | `coins` | Print the top 5 coins on https://coinmarketcap.com/ | `?coins` |
+| `coinschanges` | Print the top 5 increase (in %) in the last 24 hours. | `?coinschanges` |
 
  ### Events
  
