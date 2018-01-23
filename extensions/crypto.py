@@ -49,6 +49,7 @@ class Crypto:
                 percent_change_24h = currency['percent_change_24h']
                 percent_change_7d = currency['percent_change_7d']
                 price_usd = float(currency['price_usd'])
+                price_usd = f'{price_usd:.2f}'
 
                 raw_data_increase.setdefault('Rank', [])
                 raw_data_increase['Rank'].append(rank)
