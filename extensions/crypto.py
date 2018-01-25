@@ -1,4 +1,5 @@
 import requests
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from pandas.tools.plotting import table
@@ -42,6 +43,9 @@ class Crypto:
             ordered_data = sorted(data, key=lambda k: (float(k['percent_change_24h']),
                                                        (k['percent_change_7d'])), reverse=True)[:5]
             raw_data_increase = {}
+            if not os.path.exists('df_image'):
+                os.makedirs('df_image')
+            os.chdir('df_image')
 
             for currency in ordered_data:
                 rank = currency['rank']
