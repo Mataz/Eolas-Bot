@@ -37,44 +37,48 @@ class Crypto:
         @eolas.command()
         async def coinschanges():
             """Print the top 5 increase (in %) in the last 24 hours."""
-            url = 'https://api.coinmarketcap.com/v1/ticker/'
-            data = requests.get(url).json()
+            url = 'http://coincap.io/front'
+
+            try:
+                data = requests.get(url).json()
+            except Exception as e:
+                data = None
+
             channel = discord.Object(id='ID_OF_YOUR_CHANNEL')
-            ordered_data = sorted(data, key=lambda k: (float(k['percent_change_24h']),
-                                                       (k['percent_change_7d'])), reverse=True)[:5]
+            top100_data = sorted(data, key=lambda k: (float(k['mktcap'])), reverse=True)[
+                          :100]
+            ordered_data = sorted(top100_data, key=lambda k: (float(k['cap24hrChange'])),
+                                  reverse=True)[:5]
             raw_data_increase = {}
             if not os.path.exists('df_image'):
                 os.makedirs('df_image')
             os.chdir('df_image')
 
             for currency in ordered_data:
-                rank = currency['rank']
-                name = currency['name']
-                percent_change_24h = currency['percent_change_24h']
-                percent_change_7d = currency['percent_change_7d']
-                price_usd = float(currency['price_usd'])
-                price_usd = f'{price_usd:.2f}'
+                name = currency['long']
+                market_cap = float(currency['mktcap'])
+                market_cap_rounded = f'{market_cap:,.2f}'
+                if data is not None:
+                    percent_change_24 = currency['cap24hrChange']
+                price = float(currency['price'])
+                price_rounded = f'{price:.2f}'
 
-                raw_data_increase.setdefault('Rank', [])
-                raw_data_increase['Rank'].append(rank)
                 raw_data_increase.setdefault('Name', [])
                 raw_data_increase['Name'].append(name)
-                raw_data_increase.setdefault('Change last 24h (%)', [])
-                raw_data_increase['Change last 24h (%)'].append(percent_change_24h)
-                raw_data_increase.setdefault('Change last 7d (%)', [])
-                raw_data_increase['Change last 7d (%)'].append(percent_change_7d)
+                raw_data_increase.setdefault('Market Cap(USD)', [])
+                raw_data_increase['Market Cap(USD)'].append(market_cap_rounded)
+                raw_data_increase.setdefault('%24hr', [])
+                raw_data_increase['%24hr'].append(percent_change_24)
                 raw_data_increase.setdefault('Price(USD)', [])
-                raw_data_increase['Price(USD)'].append(price_usd)
-                # print(raw_data)
+                raw_data_increase['Price(USD)'].append(price_rounded)
 
             df = pd.DataFrame(raw_data_increase,
-                              columns=['Rank', 'Name', 'Change last 24h (%)',
-                                       'Change last 7d (%)', 'Price(USD)'])
+                              columns=['Name', 'Market Cap(USD)', '%24hr', 'Price(USD)'])
 
             print(df.to_string(index=False))
 
             # set fig size
-            fig, ax = plt.subplots(figsize=(9.5, 2.7))
+            fig, ax = plt.subplots(figsize=(6.8, 2))
             # no axes
             ax.xaxis.set_visible(False)
             ax.yaxis.set_visible(False)
@@ -84,13 +88,13 @@ class Crypto:
             tab = table(ax, df, rowLabels=[''] * df.shape[0], loc='center')
             # set font manually
             tab.auto_set_font_size(False)
-            tab.set_fontsize(10)
+            tab.set_fontsize(8.8)
             # set scale
-            tab.scale(1, 2.5)
+            tab.scale(1, 1.8)
             # save the result
-            plt.savefig('cryptopinc.png')
+            plt.savefig('coincapinc.png')
 
-            await eolas.send_file(channel, 'cryptopinc.png')
+            await eolas.send_file(channel, 'coincapinc.png')
 
 
 def setup(eolas):
