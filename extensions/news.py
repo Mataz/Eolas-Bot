@@ -61,7 +61,7 @@ class News:
         # @space - Scrape the latest news on spaceflightnow.com
         @eolas.command()
         async def space():
-            """Scrape the latest news on space.com"""
+            """Scrape the latest news on spaceflightnow.com"""
             source = requests.get(
                 'https://spaceflightnow.com/category/news-archive/').text
             soup = bs4.BeautifulSoup(source, 'lxml')
