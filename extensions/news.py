@@ -58,29 +58,32 @@ class News:
 
                 csv_file.close()
                 
-        # @space - Scrape the latest news on space.com
+        # @space - Scrape the latest news on spaceflightnow.com
         @eolas.command()
         async def space():
             """Scrape the latest news on space.com"""
-            source = requests.get('https://www.space.com/news').text
+            source = requests.get(
+                'https://spaceflightnow.com/category/news-archive/').text
             soup = bs4.BeautifulSoup(source, 'lxml')
 
-            for latest_news in soup.find_all('li', class_='search-item line pure-g')[:5]:
-                titles = latest_news.h2.text
+            for latest_news in soup.find_all('div', class_='mh-loop-content clearfix')[
+                               :3]:
+
+                titles = latest_news.h3.text.strip().upper()
                 print(titles)
 
                 try:
                     links = latest_news.find('a')['href']
-                    space_link = f'https://www.space.com/{links}'
                 except Exception as e:
-                    space_link = None
-                print(space_link)
+                    links = None
+                print(links + '\n')
 
-                summary = latest_news.find('p', class_='mod-copy').text.strip()
-                print(summary)
+                summary = textwrap.fill(
+                    latest_news.find('div', class_='mh-excerpt').text.strip(), 60)
+                print(summary + '\n' * 2)
 
-                if space_link is not None:
-                    await eolas.say(space_link + '\n')
+                if links is not None:
+                    await eolas.say(titles + '\n' + links + '\n\n' + summary + '\n' *2 + '_ _')
                 else:
                     pass
 
