@@ -21,6 +21,7 @@ ___
 | `coins` | Print the top 5 coins on https://coinmarketcap.com/ | `?coins` |
 | `coinschanges` | Print the top 5 increase (in %) in the last 24 hours. | `?coinschanges` |
 | `space` | Fetch the latest news on spaceflightnow.com | `?space` |
+| `hearthstone` | Print the current top 3 overperforming decks listed on hsreplay.net | `?hearthstone` |
 
  ### Events
  
