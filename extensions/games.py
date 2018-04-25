@@ -25,7 +25,7 @@ class Games:
         async def hearthstone():
             """Print the current top 3 overperforming decks listed on hsreplay"""
             driver = webdriver.Chrome()
-            driver.implicitly_wait(15)
+            driver.implicitly_wait(15)                  # have to wait in order to get the driver to scrape
             driver.get('https://hsreplay.net/meta/')
 
             tier_elem = driver.find_elements_by_class_name('tier-header')
