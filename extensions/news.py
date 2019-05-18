@@ -6,7 +6,7 @@ import discord
 from discord.ext import commands as eolas
 
 
-class News:
+class News(eolas.Cog):
     def __init__(self, eolas):
         self.eolas = eolas
 
@@ -57,7 +57,7 @@ class News:
                         {'Hours': hours, 'Titles': titles, 'Links': lm_link})
 
                 csv_file.close()
-                
+
         # @space - Scrape the latest news on spaceflightnow.com
         @eolas.command()
         async def space():

@@ -121,3 +121,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Config files
+config/
+
+# ignore VS Code
+.vscode/

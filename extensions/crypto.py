@@ -7,7 +7,7 @@ import discord
 from discord.ext import commands as eolas
 
 
-class Crypto:
+class Crypto(eolas.Cog):
     def __init__(self, eolas):
         self.eolas = eolas
 
@@ -32,7 +32,7 @@ class Crypto:
                 await eolas.say(rank + ' | ' + name.upper() + ' | ' + '$' + price_usd
                                 + ' | ' + '$' + market_cap_usd + ' | ' + change_24h + '%'
                                 + '\n' + '_ _') # '_ _' is to create a clean line break on Discord
-        
+
         # ?coinschanges - Print the top 5 changes in the last 24 hrs
         @eolas.command()
         async def coinschanges():

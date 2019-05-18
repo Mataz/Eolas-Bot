@@ -5,7 +5,7 @@ import discord
 from discord.ext import commands as eolas
 
 
-class Basic:
+class Basic(eolas.Cog):
     def __init__(self, eolas):
         self.eolas = eolas
 
@@ -22,17 +22,15 @@ class Basic:
                           'Bonjour', 'bonjour']
             foot_list = ['Neymar', 'neymar', 'PSG', 'psg', 'Zidane', 'zidane',
                          'Barca', 'barca', 'OM', 'Deschamps', 'deschamps',
-                         'Blaise', 'blaise']
+                         'Blaise', 'blaise', "foot"]
 
             if message.content in hello_list:
-                await eolas.send_message(message.channel, "Salut !")
+                await message.channel.send("Salut !")
             if any(i in message.content for i in foot_list):
-                await eolas.send_message(message.channel,
-                                         'https://media.giphy.com/media/hBO3iUfEtI2s0/giphy.gif')
-                await eolas.send_message(message.channel,
-                                         "Non, pas de ça ici, s'il-vous-plaît.")
+                await message.channel.send('https://media.giphy.com/media/hBO3iUfEtI2s0/giphy.gif')
+                await message.channel.send("Non, pas de ça ici, s'il-vous-plaît.")
             await eolas.process_commands(message)
-        
+
         # ?facts - Scrape unkno.com and return the fact from it.
         @eolas.command()
         async def facts():

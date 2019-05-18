@@ -1,18 +1,19 @@
 from discord.ext import commands
 
+from config import config
+
 
 description = '''There are a number of utility commands being showcased here.'''
 eolas = commands.Bot(command_prefix='?', description=description)
 
-token = 'YOUR_BOT_TOKEN'
 
 extensions = (
     'extensions.basic',
-    'extensions.weather',
+    # 'extensions.weather',
     'extensions.football',
     'extensions.games',
     'extensions.news',
-    'extensions.crypto',
+    # 'extensions.crypto',
 )
 
 
@@ -31,7 +32,7 @@ def main():
             exc = '{}: {}'.format(type(e).__name__, e)
             print('Failed to load extension {}\n{}'.format(extension, exc))
 
-    eolas.run(token)
+    eolas.run(config.DISCORD_TOKEN)
 
 
 if __name__ == '__main__':

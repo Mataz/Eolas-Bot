@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands as eolas
 
 
-class Football:
+class Football(eolas.Cog):
     def __init__(self, eolas):
         self.eolas = eolas
 
