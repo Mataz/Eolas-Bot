@@ -3,13 +3,14 @@ from discord.ext import commands
 
 from config import config
 
+import random
 import sys, traceback
 
 description = """There are a number of utility commands being showcased here."""
 bot = commands.Bot(command_prefix="?", description=description)
 
 
-cogs = ["cogs.members", "cogs.basic", "cogs.crypto"]
+cogs = ["cogs.members", "cogs.basic", "cogs.crypto", "cogs.news"]
 
 # 'extensions.weather',
 # 'extensions.football',
@@ -68,12 +69,25 @@ async def on_message(message):
         "blaise",
         "foot",
     ]
+    meats = [
+        "viande",
+        "boeuf",
+        "steak",
+        "barbecue"
+    ]
+    meats_gifs = [
+        "https://media.giphy.com/media/jxNyPO2icEEYSyZhoh/giphy.gif",
+        "https://media.giphy.com/media/10ADU4ag31l63C/giphy.gif",
+        "https://media.giphy.com/media/c11ISnPiRdis8/giphy.gif",
+    ]
 
     if message.content in hello_list:
         await message.channel.send("Salut !")
     if any(i in message.content for i in foot_list):
         await message.channel.send("https://media.giphy.com/media/hBO3iUfEtI2s0/giphy.gif")
         await message.channel.send("Non, pas de ça ici, s'il-vous-plaît.")
+    if any(i in message.content for i in meats):
+        await message.channel.send(random.choice(meats_gifs))
     await bot.process_commands(message)
 
 
