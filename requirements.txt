@@ -8,7 +8,7 @@ async-timeout==3.0.1
 atomicwrites==1.2.1
 attrs==18.2.0
 beautifulsoup4==4.6.3
-black==19.3b0
+black
 bs4==0.0.1
 certifi==2018.11.29
 cffi==1.11.5
